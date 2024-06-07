@@ -86,7 +86,6 @@ public class Tree {
 
         return resultado;
     }
-<<<<<<< HEAD
 
     /*public boolean hasElem(int elem) {
         return hasElem(this.root, elem);
@@ -387,9 +386,5 @@ public class Tree {
 
         return list;
     }*/
-
-
-=======
->>>>>>> 745d7901ce769c01f5fd6412d7df4dffa4edc52e
 }
 

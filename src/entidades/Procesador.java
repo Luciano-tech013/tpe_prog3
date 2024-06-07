@@ -78,8 +78,4 @@ public class Procesador {
 
         return true;
     }
-
-    public int getTareasAlt() {
-        return this.tareasAsignadas.size();
-    }
 }

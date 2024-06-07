@@ -1,11 +1,7 @@
-<<<<<<< HEAD
 import entidades.Procesador;
-=======
->>>>>>> 745d7901ce769c01f5fd6412d7df4dffa4edc52e
 import entidades.Tarea;
 import utils.CSVReader;
 import utils.Tree.Tree;
-
 import java.util.*;
 
 /**
@@ -18,10 +14,7 @@ public class Servicios {
 	private LinkedList<Tarea> tareasCriticas;
 	private LinkedList<Tarea> tareasNoCriticas;
 	private Tree tareasOrdenadas;
-<<<<<<< HEAD
 	private AsignacionTareas asignador;
-=======
->>>>>>> 745d7901ce769c01f5fd6412d7df4dffa4edc52e
 	private CSVReader reader;
 
 	/*
@@ -33,13 +26,9 @@ public class Servicios {
 		this.tareasNoCriticas = new LinkedList<Tarea>();
 		this.tareasOrdenadas = new Tree();
 		this.reader = new CSVReader();
-<<<<<<< HEAD
 		ArrayList<Tarea> tareas_obtenidas = reader.readTasks(pathTareas);
 		this.cargarTareas(tareas_obtenidas);
 		this.asignador = new AsignacionTareas(tareas_obtenidas, reader.readProcessors(pathProcesadores));
-=======
-		cargarTareas(reader.readTasks(pathTareas));
->>>>>>> 745d7901ce769c01f5fd6412d7df4dffa4edc52e
 	}
 	
 	/*
@@ -69,7 +58,6 @@ public class Servicios {
 		return this.tareasOrdenadas.searchNodesByRange(prioridadInferior, prioridadSuperior);
 	}
 
-<<<<<<< HEAD
 	public List<Procesador> servicio4() {
 		return this.asignador.solucionBacktracking();
 	}
@@ -77,6 +65,7 @@ public class Servicios {
 	public List<Procesador> servicio5() {
 		return this.asignador.solucionGreedy();
 	}
+
 	public int getTiempoMaxDeEjecucionDeAsignacion() {
 		return this.asignador.getTiempoMax();
 	}
@@ -84,9 +73,6 @@ public class Servicios {
 	public int getCantEstadosGeneradosServicio4() {
 		return this.asignador.getCantEstadosGenerados();
 	}
-
-=======
->>>>>>> 745d7901ce769c01f5fd6412d7df4dffa4edc52e
 
 	private void cargarTareas(ArrayList<Tarea> tareasParseadas) {
 		for (Tarea tarea : tareasParseadas) {
