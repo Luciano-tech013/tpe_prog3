@@ -1,0 +1,16 @@
+T1;Tarea1;50;true;92
+T2;Tarea2;10;false;31
+T3;Tarea3;100;false;70
+T4;Tarea4;20;true;58
+<<<<<<< HEAD
+T5;Tarea5;38;true;81
+T6;Tarea6;77;false;88
+T7;Tarea7;90;true;65
+T8;Tarea8;27;false;44
+T9;Tarea9;18;false;49
+T10;Tarea10;29;false;79
+T11;Tarea11;21;true;80
+=======
+T5;Tarea5;20;true;58
+T6;Tarea6;20;true;58
+>>>>>>> 745d7901ce769c01f5fd6412d7df4dffa4edc52e
