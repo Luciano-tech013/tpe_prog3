@@ -122,8 +122,8 @@ public class AsignacionTareas {
                 }
                 i++;
             }
-            //Si se recorrieron todos los seleccionados y ninguna acepta la tarea, NO HAY SOLUCION
-            if(i == this.procesadores.size()-1) {
+            //Si se recorrieron todos los seleccionados y ninguno acepta la tarea, NO HAY SOLUCION
+            if(i == this.procesadores.size()) {
                 //Si no hay solucion, vacio a los procesadores que hayan quedado con tareas asignadas
                 eliminarTareas();
                 //Retorno que no hay solucion
@@ -142,7 +142,7 @@ public class AsignacionTareas {
     }
 
     //Devuelve una lista con orden ascendente de todos los procesadores segun el tiempo de ejecucion que suman con la tarea candidata
-    //El primer procesador es el mejor seleccionado, el siguiente el segundo mejor, el siguiente el tecer mejor, y asi sucesivamente
+    //El primer procesador es el mejor seleccionado, el siguiente el segundo mejor, el siguiente el tercer mejor, y asi sucesivamente
     private MyLinkedList<Procesador> seleccionar(Tarea t) {
         //Lista personalizada que contiene un insertar ordenado
         MyLinkedList<Procesador> seleccionados = new MyLinkedList<Procesador>(null);

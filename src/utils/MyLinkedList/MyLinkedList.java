@@ -16,8 +16,14 @@ public class MyLinkedList<T extends Comparable<T>> {
     }
 
     public void insertOrder(T info) {
-        if (this.isEmpty() || info.compareTo(this.firstNode.getInfo()) < 0) {
-            this.addFirst(info);
+        if(this.isEmpty()) {
+            addFirst(info);
+            return;
+        }
+
+        int resultado = info.compareTo(this.firstNode.getInfo());
+        if(resultado < 0 || resultado == 0) {
+            addFirst(info);
             return;
         }
 
@@ -33,6 +39,7 @@ public class MyLinkedList<T extends Comparable<T>> {
         // Insertar el nuevo nodo en la lista
         newNode.setNext(tmp);
         prev.setNext(newNode);
+        size++;
     }
 
     public T get(int index) {

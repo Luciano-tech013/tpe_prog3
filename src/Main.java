@@ -7,8 +7,10 @@ public class Main {
     public static void main(String[] args) throws Exception {
         Servicios servicios = new Servicios("./src/datasets/Procesadores.csv", "./src/datasets/Tareas.csv");
 
+        System.out.println("\n---------------------------------");
+
         //Servicio 1
-        /*System.out.println("Servicio 1: ");
+        System.out.println("Servicio 1: ");
         Tarea tarea = servicios.servicio1("T2");
         System.out.println(tarea);
 
@@ -34,7 +36,7 @@ public class Main {
         System.out.println("Tiempo Maximo de Ejecucion: " + servicios.getTiempoMaxDeEjecucionDeAsignacion());
         System.out.println("Metrica para analizar costo de solucion: " + servicios.getCantEstadosGeneradosServicio4());
 
-        System.out.println("\n---------------------------------");*/
+        System.out.println("\n---------------------------------");
 
         //Servicio 5
         System.out.println("Servicio 5: ");

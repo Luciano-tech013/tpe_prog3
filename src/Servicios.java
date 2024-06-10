@@ -69,7 +69,7 @@ public class Servicios {
 
 	/*
 	* Para generar la solucion con algoritmo greedy lo que hacemos es recorrer todas las tareas y seleccionar como candidatas a aquellas tareas cuya asignacion a X procesador
-	* genere el menor tiempo de ejecucion entre los procesadores (criterio greedy), verificando si esa tarea cumple con las restricciones establecidas.
+	* genere el menor tiempo de ejecucion entre los procesadores (criterio greedy), verificando si ese procesador cumple con las restricciones establecidas.
 	* De esta forma nos aseguramos de quedarnos con el minimo tiempo de ejecucion (o una aproximacion) y no probar a la fuerza todas las asignaciones
 	*/
 	public List<Procesador> servicio5() {
