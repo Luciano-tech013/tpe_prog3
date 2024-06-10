@@ -8,31 +8,41 @@ public class Main {
         Servicios servicios = new Servicios("./src/datasets/Procesadores.csv", "./src/datasets/Tareas.csv");
 
         //Servicio 1
-        System.out.println("Servicio 1: ");
-
+        /*System.out.println("Servicio 1: ");
         Tarea tarea = servicios.servicio1("T2");
         System.out.println(tarea);
 
-        //Servicio 2
+        System.out.println("\n---------------------------------");
 
+        //Servicio 2
+        System.out.println("Servicio 2: ");
         List<Tarea> resultado1 = servicios.servicio2(false);
         imprimirTareas(resultado1);
 
+        System.out.println("\n---------------------------------");
+
         //Servicio 3
-        List<Tarea> resultado2 = servicios.servicio3(50, 100);
+        System.out.println("Servicio 3: ");
+        List<Tarea> resultado2 = servicios.servicio3(80, 100);
         imprimirTareas(resultado2);
 
+        System.out.println("\n---------------------------------");
+
         //Servicio 4
-        /*List<Procesador> resultado3 = servicios.servicio4();
-        imprimirProcesadores(resultado3);
+        System.out.println("Servicio 4: ");
+        imprimirProcesadores(servicios.servicio4());
         System.out.println("Tiempo Maximo de Ejecucion: " + servicios.getTiempoMaxDeEjecucionDeAsignacion());
-        System.out.println("Metrica para analizar costo de solucion: " + servicios.getCantEstadosGeneradosServicio4());*/
+        System.out.println("Metrica para analizar costo de solucion: " + servicios.getCantEstadosGeneradosServicio4());
+
+        System.out.println("\n---------------------------------");*/
 
         //Servicio 5
+        System.out.println("Servicio 5: ");
         List<Procesador> resultado4 = servicios.servicio5();
+        if(resultado4.isEmpty()) { System.out.println("No hay solucion posible"); }
         imprimirProcesadores(resultado4);
         System.out.println("Tiempo Maximo de Ejecucion: " + servicios.getTiempoMaxDeEjecucionDeAsignacion());
-        System.out.println("Metrica para analizar costo de solucion: ");
+        System.out.println("Metrica para analizar costo de solucion: " + servicios.getCantCandidatosConsideradosServicio5());
     }
 
     public static void imprimirTareas(List<Tarea> lista) {

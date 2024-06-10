@@ -48,7 +48,7 @@ public class Tarea {
 
     @Override
     public String toString() {
-        return this.getId() + " - " + this.getNombre() + " - " + this.getPrioridad() + " - " + this.isCritica() + " - " + this.getTiempoDeEjecucion();
+        return this.getId() + " - " + this.getNombre() + " - "  + + this.getTiempoDeEjecucion() + " - " + this.isCritica() + " - " +  this.getPrioridad();
     }
 
     @Override

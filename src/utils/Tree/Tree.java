@@ -24,6 +24,7 @@ public class Tree {
     /*
         Costo computacional: o(h) donde h = altura del arbol. Porque en el peor de los casos vamos a tener que insertar despues del nodo hoja mas lejano
     */
+    //Modificamos el add para que los nodos puedan guardar una lista de tareas que tengan el mismo valor de prioridad
     private void add(TreeNode node, int value, Tarea elem) {
         if(value > node.getValue()) {
             if(node.getRight() == null) {
@@ -62,12 +63,18 @@ public class Tree {
         if((min < 0 || max > 100) || (min < 0 && max > 100))
             return null;
 
-        return searchNodesByRange(min, max, new LinkedList<Tarea>(), this.root);
+        LinkedList<Tarea> resultado = new LinkedList<Tarea>();
+        searchNodesByRange(min, max, resultado, this.root);
+        return resultado;
     }
 
-    private List<Tarea> searchNodesByRange(int min, int max, LinkedList<Tarea> resultado, TreeNode node) {
+    /*
+        Costo Computacional: O(h) donde h = a la altura del arbol, porque en el peor de los casos el nodo que cumpla el rango sea el mas lejano
+    */
+    private void searchNodesByRange(int min, int max, LinkedList<Tarea> resultado, TreeNode node) {
         if(node != null) {
             if (node.getValue() >= min && node.getValue() <= max) {
+                //No guardamos solo una tarea, guardamos la lista de tareas que tiene el nodo porque puede pasar que existan varias tareas con el mismo valor de prioridad
                 resultado.addAll(node.getElementos());
                 if (node.getLeft() != null)
                     searchNodesByRange(min, max, resultado, node.getLeft());
@@ -83,8 +90,6 @@ public class Tree {
                     searchNodesByRange(min, max, resultado, node.getLeft());
             }
         }
-
-        return resultado;
     }
 
     /*public boolean hasElem(int elem) {

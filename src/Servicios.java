@@ -58,10 +58,20 @@ public class Servicios {
 		return this.tareasOrdenadas.searchNodesByRange(prioridadInferior, prioridadSuperior);
 	}
 
+	/*
+	* Para generar la solucion con algoritmo backtracking lo que hacemos es probar diferentes asignaciones de tareas en los procesadores disponbibles
+	* de manera de ir comparando (una vez asignadas todas las tareas) los tiempos de ejecucion obtenidos y de esta forma asegurarnos de obtener el minimo
+	* tiempo de ejecucion de todos los generados, teniendo en cuenta las restricciones establecidas y la estrategia de poda para hacer mas eficiente mi algoritmo
+	*/
 	public List<Procesador> servicio4() {
 		return this.asignador.solucionBacktracking();
 	}
 
+	/*
+	* Para generar la solucion con algoritmo greedy lo que hacemos es recorrer todas las tareas y seleccionar como candidatas a aquellas tareas cuya asignacion a X procesador
+	* genere el menor tiempo de ejecucion entre los procesadores (criterio greedy), verificando si esa tarea cumple con las restricciones establecidas.
+	* De esta forma nos aseguramos de quedarnos con el minimo tiempo de ejecucion (o una aproximacion) y no probar a la fuerza todas las asignaciones
+	*/
 	public List<Procesador> servicio5() {
 		return this.asignador.solucionGreedy();
 	}
@@ -72,6 +82,10 @@ public class Servicios {
 
 	public int getCantEstadosGeneradosServicio4() {
 		return this.asignador.getCantEstadosGenerados();
+	}
+
+	public int getCantCandidatosConsideradosServicio5() {
+		return this.asignador.getCantCandidatosConsiderados();
 	}
 
 	private void cargarTareas(ArrayList<Tarea> tareasParseadas) {

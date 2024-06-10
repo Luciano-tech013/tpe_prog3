@@ -5,6 +5,9 @@ import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.InputMismatchException;
+import java.util.Scanner;
+
 import entidades.Procesador;
 import entidades.Tarea;
 
@@ -50,8 +53,10 @@ public class CSVReader {
 			String codigo = line[1].trim();
 			Boolean refrigerado = Boolean.parseBoolean(line[2].trim());
 			Integer anio = Integer.parseInt(line[3].trim());
-			Integer tiempoMax = Integer.parseInt(line[4].trim());
-			Procesador procesador = new Procesador(id, codigo, refrigerado, anio, tiempoMax);
+			Procesador procesador = new Procesador(id, codigo, refrigerado, anio);
+			if(!refrigerado)
+				procesador.setTiempoMaxDeEjecucion(solicitarTiempoMaxDeEjecucion());
+
 			procesadoresParseados.add(procesador);
 		}
 
@@ -85,4 +90,17 @@ public class CSVReader {
 		return lines;
 	}
 
+	private int solicitarTiempoMaxDeEjecucion() {
+		int numero = 0;
+		Scanner s = new Scanner(System.in);
+
+		try {
+			System.out.println("Ingrese un tiempo para el procesador");
+			numero = s.nextInt();
+		} catch(InputMismatchException e) {
+			System.out.println(e);
+		}
+
+		return numero;
+	}
 }
