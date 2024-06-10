@@ -1,9 +1,8 @@
 import entidades.Tarea;
 import entidades.Procesador;
+import utils.MyLinkedList.MyLinkedList;
 
-import java.util.Iterator;
-import java.util.LinkedList;
-import java.util.List;
+import java.util.*;
 
 public class AsignacionTareas {
     private int tiempoMax;
@@ -105,34 +104,34 @@ public class AsignacionTareas {
         //Declaro auxiliares
         Tarea candidato = null;
         Procesador seleccionado = null;
-        LinkedList<Procesador> noConsiderados = new LinkedList<Procesador>();
+        MyLinkedList<Procesador> seleccionados = null;
         boolean stop = false; int i = 0;
-        Iterator<Tarea> it_candidatos = candidatos.iterator();
 
         //Mientras haya candidatos disponibles
+        Iterator<Tarea> it_candidatos = candidatos.iterator();
         while(it_candidatos.hasNext()) {
             candidato = it_candidatos.next();
-            //Determina el mejor candidato del conjunto de candidatos en base al criterio greedy y
-            //Si es factible esa tarea la asigno al procesador correspondiente, si no elijo otro procesador
-            while(i < this.procesadores.size() && !stop) {
-                seleccionado = seleccionar(candidato, noConsiderados);
+            //Determina un conjunto de seleccionados. El primer seleccionado de la lista es el mejor candidato
+            seleccionados = seleccionar(candidato);
+            //Si es factible esa tarea, la asigno al procesador correspondiente, si no, elijo el siguiente mejor procesador
+            while(i < seleccionados.size() && !stop) {
+                seleccionado = seleccionados.get(i);
                 if(seleccionado.aceptaTarea(candidato)) {
                     seleccionado.asignarTarea(candidato);
                     stop = true;
-                } else {
-                    noConsiderados.add(seleccionado);
                 }
                 i++;
             }
-
+            //Si se recorrieron todos los seleccionados y ninguna acepta la tarea, NO HAY SOLUCION
             if(i == this.procesadores.size()-1) {
+                //Si no hay solucion, vacio a los procesadores que hayan quedado con tareas asignadas
                 eliminarTareas();
+                //Retorno que no hay solucion
                 return null;
             }
-
-            noConsiderados.clear();
+            //Vacio la lista para no guardar repetidos y reseteo valores auxiliares
+            seleccionados.clear();
             stop = false; i = 0;
-
             //Elimino mi candidato del Conjunto de Candidatos
             it_candidatos.remove(); //Elimino en el iterador porque si no me lanza excepcion
         }
@@ -142,33 +141,20 @@ public class AsignacionTareas {
         return this.procesadores;
     }
 
-    private Procesador seleccionar(Tarea t, LinkedList<Procesador> noConsiderados) {
-        Procesador seleccionado = null;
-        int mejorTiempoDeEjecucion = 0, tiempoMaxProcesador = 0;
+    //Devuelve una lista con orden ascendente de todos los procesadores segun el tiempo de ejecucion que suman con la tarea candidata
+    //El primer procesador es el mejor seleccionado, el siguiente el segundo mejor, el siguiente el tecer mejor, y asi sucesivamente
+    private MyLinkedList<Procesador> seleccionar(Tarea t) {
+        //Lista personalizada que contiene un insertar ordenado
+        MyLinkedList<Procesador> seleccionados = new MyLinkedList<Procesador>(null);
         for(Procesador p : this.procesadores) {
             this.cantCandidatosConsiderados++;
-            mejorTiempoDeEjecucion = p.getTiempoDeEjecucion() + t.getTiempoDeEjecucion();
-            //Criterio Greedy
-            if((mejorTiempoDeEjecucion  < tiempoMaxProcesador || tiempoMaxProcesador == 0) && esDiferente(p, noConsiderados)) {
-                seleccionado = p;
-                tiempoMaxProcesador =  mejorTiempoDeEjecucion;
-            }
+            p.asignarTarea(t);
+            //Segun el tiempo que sume el procesador con la tarea, se insertara en un orden
+            seleccionados.insertOrder(p);
+            p.desasignarTarea(t);
         }
 
-        return seleccionado;
-    }
-
-    //Funcion que retorna si el procesador que se esta evaluando sea diferente a uno que ya se considero (y no acepto X tarea)
-    private boolean esDiferente(Procesador p, LinkedList<Procesador> procesadores) {
-        if(procesadores.isEmpty())
-            return true;
-
-        int i = 0;
-        while (i < procesadores.size() && !procesadores.get(i).getId().equals(p.getId())) {
-            i++;
-        }
-
-        return (i == procesadores.size());
+        return seleccionados;
     }
 
     //Si Greedy no encontro una solucion, los procesadores deben quedar sin tareas asignadas

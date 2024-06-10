@@ -39,10 +39,13 @@ public class Main {
         //Servicio 5
         System.out.println("Servicio 5: ");
         List<Procesador> resultado4 = servicios.servicio5();
-        if(resultado4.isEmpty()) { System.out.println("No hay solucion posible"); }
-        imprimirProcesadores(resultado4);
-        System.out.println("Tiempo Maximo de Ejecucion: " + servicios.getTiempoMaxDeEjecucionDeAsignacion());
-        System.out.println("Metrica para analizar costo de solucion: " + servicios.getCantCandidatosConsideradosServicio5());
+        if(resultado4 == null) {
+            System.out.println("No hay solucion posible");
+        } else {
+            imprimirProcesadores(resultado4);
+            System.out.println("Tiempo Maximo de Ejecucion: " + servicios.getTiempoMaxDeEjecucionDeAsignacion());
+            System.out.println("Metrica para analizar costo de solucion: " + servicios.getCantCandidatosConsideradosServicio5());
+        }
     }
 
     public static void imprimirTareas(List<Tarea> lista) {

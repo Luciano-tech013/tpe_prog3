@@ -2,7 +2,7 @@ package entidades;
 import java.util.Iterator;
 import java.util.LinkedList;
 
-public class Procesador {
+public class Procesador implements Comparable<Procesador> {
     private final int TAREAS_CRITICAS_ACEPTADAS;
     private String id;
     private String codigo;
@@ -94,5 +94,9 @@ public class Procesador {
 
     public void borrarTareasAsignadas() {
         this.tareasAsignadas.clear();
+    }
+
+    public int compareTo(Procesador otroP) {
+        return this.getTiempoDeEjecucion() - otroP.getTiempoDeEjecucion();
     }
 }
